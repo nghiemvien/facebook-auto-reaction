@@ -2,9 +2,13 @@ var page = require('webpage').create();
 var server = require('webserver').create();
 var system = require('system');
 var args = system.args;
+page.settings.userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12';
+page.viewportSize = {
+  width: 1920,
+  height: 1080
+};
 
 function reaction(url) {
-	busy = true;
 	console.log(url);
 	page.open(url, function(status) {
 		page.evaluate(function() {
@@ -54,7 +58,7 @@ if ( args.length<2 ) {
 				console.log("logged in");
 			}, args);
 
-			setInterval(function() {
+			setTimeout(function() {
 				reaction(args[3]);
 			}, 5000);
 		}
